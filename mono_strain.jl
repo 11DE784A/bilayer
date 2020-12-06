@@ -44,10 +44,12 @@ N(ξ, B, B_S) = floor((abs(B + ξ*B_S) * A) / (h/e))
 function E(T, B)
 	# From Equation B6
 	return (-λ*B*tanh(β(T)*λ*B) 
-			+ (sum([N(ξ)*(ξ*λ_bar*B_S*exp(-ξ*β(T)*λ_bar*B_S) 
-						 + ħ*Ω(ξ, B, B_S)*sqrt(1 + Δ(ξ)^2)*exp(-β(T)*ħ*Ω(ξ, B, B_S)*sqrt(1 + Δ(ξ)^2))) 
+			+ (sum([N(ξ, B, B_S)*(ξ*λ_bar*B_S*exp(-ξ*β(T)*λ_bar*B_S) 
+						 + ħ*Ω(ξ, B, B_S)*sqrt(1 + Δ(ξ, B, B_S)^2) 
+						   * exp(-β(T)*ħ*Ω(ξ, B, B_S)*sqrt(1 + Δ(ξ, B, B_S)^2)))
 				   for ξ in [-1, 1]]) 
-			   / sum([N(ξ)*(exp(-ξ*β(T)*λ_bar*B_S) + exp(-β(T)*ħ*Ω(ξ, B, B_S)*sqrt(1 + Δ(ξ)^2))) 
+			   / sum([N(ξ, B, B_S)*(exp(-ξ*β(T)*λ_bar*B_S) 
+									+ exp(-β(T)*ħ*Ω(ξ, B, B_S)*sqrt(1 + Δ(ξ, B, B_S)^2))) 
 					  for ξ in [-1, 1]])))
 end
 
@@ -55,7 +57,8 @@ function S(T, B)
 	# From Equation B7
 	return (β(T)*E(T, B) 
 			+ log(2*cosh(β(T)*λ*B)) 
-			+ log(sum([N(ξ)*(exp(-ξ*β(T)*λ_bar*B_S) + exp(-β(T)*ħ*Ω(ξ, B, B_S)*sqrt(1 + Δ(ξ)^2)))
+			+ log(sum([N(ξ, B, B_S)*(exp(-ξ*β(T)*λ_bar*B_S) 
+									 + exp(-β(T)*ħ*Ω(ξ, B, B_S)*sqrt(1 + Δ(ξ, B, B_S)^2)))
 					  for ξ in [-1, 1]])))
 end
 
