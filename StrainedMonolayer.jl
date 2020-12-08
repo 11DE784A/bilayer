@@ -5,37 +5,8 @@ using Roots
 using LinearAlgebra
 using LaTeXStrings
 
-# upscaled plot
-upscale = 2.4
-fntsm = Plots.font(pointsize=round(5.5*upscale))
-fntlg = Plots.font(pointsize=round(6.0*upscale))
-default(titlefont=fntlg, guidefont=fntlg, tickfont=fntsm, legendfont=fntsm, 
-        legendtitlefont=fntlg)
-default(size=(400*upscale,300*upscale)) #Plot canvas size
-default(linewidth=upscale)
-
-# units
-const eV, T, K, ° =  u"eV", u"T", u"K", u"°"
-
-# universal constants
-const e = 1.602e-19u"C" 
-const h = 4.136e-15u"eV*s"
-const ħ = h/2π
-const k_B = 8.617e-5u"eV/K"
-const μ_B = 5.788e-5u"eV/T"
-const m_e = 9.109e-31u"kg"
-
-# graphene constants
-const a = 2.46e-10u"m"               # lattice constant
-λ(j) = ([3.16, 0.381]u"eV")[j+1]     # λ(0), λ(1) parametrize in-plane, dimer hoppings
-v(j) = (√3a*λ(j)) / 2ħ               # v(0), v(1) fermi velocities
-const m = λ(1) / (2v(0)^2)           # effective mass of quasiparticles
-const γ = 0.9μ_B                     # Zeeman coupling
-const γ̄  = 1.7μ_B                    # pseudo-Zeeman coupling
-const A = (1e3a)^2                   # area of sample
-
-l(B) = sqrt(ħ/(e*abs(B)))            # Landau radius
-β(T) = (k_B*T)^-1                    # thermodynamic β
+include("PlotSettings.jl")
+include("Constants.jl")
 
 Ω(ξ, B, B_S) = v(0) * sqrt(2*e*abs(B + ξ*B_S)/ħ)
 Δ(ξ, B, B_S) = (γ̄*B_S) / (ħ*Ω(ξ, B, B_S))
