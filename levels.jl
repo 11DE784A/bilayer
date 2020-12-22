@@ -89,7 +89,7 @@ sp_dot(B) = (rdim = floor(sqrt(dim));
 
 sp_no(B) = uconvert(eV, ħ*(e*B/m))*[sqrt(n*(n-1)) for n in 0:dim]
 
-function sp_twist(θ, B, positive = true)
+function sp_twist(θ, B)
 	e = [1.0, 0, 1, 0, 1, 0, 1]
 	up = Bidiagonal(zeros(8), e, :U)
 	low = Bidiagonal(zeros(8), e, :L)
@@ -102,11 +102,7 @@ function sp_twist(θ, B, positive = true)
 	
 	H = ustrip.(eV, (√2*ħ*v(0)/l(B)))*(kron(A, low) + kron(A', up)) + kron(I(dim), ustrip.(eV, c))
 
-	if positive
-		return filter(x -> x >= 0, eigvals(H))*eV
-	else
-		return eigvals(H)*eV
-	end
+    return eigvals(H)*eV
 end
 
 #  thermodynamics
