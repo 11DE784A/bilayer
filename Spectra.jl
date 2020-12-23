@@ -66,3 +66,11 @@ function sp_twist(θ, B)
     H_b = ustrip.(eV, H_k) + kron(H_c, I(dim+1))
     return eigvals(H_b)*eV
 end
+
+# Plotting the spectrum
+B = (0.5:0.05:15)*T                 # magnetic field range
+θ = 1.1°                            # twist angle
+twi = plottable(sp_twist.(θ, B))    # computing the energy levels
+p = plot(B, twi, title = "θ = $(θ)°, N = $(dim)", ylims = (-0.2, 0.2),
+         legend = false, color = :red)
+savefig(p, "plot.png")
