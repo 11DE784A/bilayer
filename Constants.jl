@@ -14,7 +14,7 @@ const a = 2.46e-10u"m"               # lattice constant
 λ(j) = ([3.16, 0.381, 0.0, 
          0.38, 0.14]u"eV")[j+1]      # λ(0), λ(1) parametrize in-plane, dimer hoppings
 v(j) = (√3a*λ(j)) / 2ħ               # v(0), v(1) fermi velocities
-const m_eff = λ(1) / (2v(0)^2)           # effective mass of quasiparticles
+const m_eff = λ(1) / (2v(0)^2)       # effective mass of quasiparticles
 const γ = 0.9μ_B                     # Zeeman coupling
 const γ̄  = 1.7μ_B                    # pseudo-Zeeman coupling
 const A = (1e3a)^2                   # area of sample
