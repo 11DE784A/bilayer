@@ -1,9 +1,10 @@
-using Printf
-using Unitful, UnitfulRecipes
-using Plots
-using Roots
+# using Interpolations
 using LinearAlgebra
 using LaTeXStrings
+using Plots
+using Printf
+using Roots
+using Unitful, UnitfulRecipes
 
 include("PlotSettings.jl")
 include("Constants.jl")
@@ -68,9 +69,9 @@ function sp_twist(θ, B)
 end
 
 # Plotting the spectrum
-B = (0.5:0.05:15)*T                 # magnetic field range
-θ = 1.1°                            # twist angle
-twi = plottable(sp_twist.(θ, B))    # computing the energy levels
-p = plot(B, twi, title = "θ = $(θ)°, N = $(dim)", ylims = (-0.2, 0.2),
-         legend = false, color = :red)
-savefig(p, "plot.png")
+# B = (0.5:0.05:15)*T                 # magnetic field range
+# θ = 1.1°                            # twist angle
+# twi = plottable(sp_twist.(θ, B))    # computing the energy levels
+# p = plot(B, twi, title = "θ = $(θ)°, N = $(dim)", ylims = (-0.2, 0.2),
+#          legend = false, color = :red)
+# savefig(p, "plot.png")
