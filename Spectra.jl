@@ -36,7 +36,7 @@ sp_dot(B) = (rdim = floor(sqrt(dim));
              reshape([E_dot(n, m, B) for n in 0:rdim, m in -rdim:rdim], :, 1))
 
 # monolayer graphene
-E_mono(n, s, ξ, B) = (sqrt(2n)*ħ*v(0) / l(B)) - s*γ*B
+E_mono(n, s, ξ, B) = (sqrt(2n)*ħ*v(0) / l(B))
 sp_mono(B) = spectrum(E_mono, B)
 
 # strained monolayer graphene
@@ -45,7 +45,7 @@ E_strm(n, s, ξ, B, B_S) = ((n == 0 ?  ξ*ħ*Ω(ξ,B,B_S)*Δ(ξ,B,B_S) :
 sp_strm(B, B_S) = spectrum((n, s, ξ, B) -> E_strm(n, s, ξ, B, B_S), B)
 
 # bilayer graphene
-E_bi(n, s, ξ, B) = ħ*(e*B/m_eff) * sqrt(n*(n-1)) - s*γ*B
+E_bi(n, s, ξ, B) = ħ*(e*B/m_eff) * sqrt(n*(n-1))
 sp_bi(B) = spectrum(E_bi, B)
 
 # twisted bilayer graphene
