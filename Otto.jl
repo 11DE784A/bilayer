@@ -41,3 +41,8 @@ end
 
 B_1 = 5.0T
 T_1, T_3 = 30.0K, 100.0K
+
+r = 1.2
+θ = 1.0°
+otto_res = otto(B -> sp_twist(θ, B), r, q = "a")
+
