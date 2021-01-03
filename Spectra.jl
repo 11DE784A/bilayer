@@ -65,7 +65,7 @@ function sp_twist(θ, B)
     H_k = (√2*ħ*v(0)/l(B)) * (kron(U, Π') + kron(L, Π))
 
     H_b = ustrip.(eV, H_k) + kron(H_c, I(dim+1))
-    return eigvals(H_b)*eV
+    return eigvals(H_b)[4*(dim+1)+1:end]*eV
 end
 
 # Plotting the spectrum
