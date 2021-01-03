@@ -52,7 +52,7 @@ sp_bi(B) = spectrum(E_bi, B)
 h_m(k) = -ħ*v(0)*[0u"m^-1"  k[1] + im*k[2];
                   k[1] - im*k[2]  0u"m^-1"]
 
-function sp_twist(θ, B)
+function sp_twist(θ, B, positive = true)
     Π = Bidiagonal(zeros(dim+1), sqrt.(1:dim), :U)
     U = Bidiagonal(zeros(8), [1., 0, 1, 0, 1, 0, 1], :U)
     L = U'
@@ -65,7 +65,12 @@ function sp_twist(θ, B)
     H_k = (√2*ħ*v(0)/l(B)) * (kron(U, Π') + kron(L, Π))
 
     H_b = ustrip.(eV, H_k) + kron(H_c, I(dim+1))
-    return eigvals(H_b)[4*(dim+1)+1:end]*eV
+
+    if positive
+        return eigvals(H_b)[4*(dim+1)+1:end]*eV
+    else
+        return eigvals(H_b)*eV
+    end
 end
 
 # Plotting the spectrum
