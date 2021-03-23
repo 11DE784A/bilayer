@@ -58,9 +58,9 @@ function sp_twist(θ, B, positive = true)
     L = U'
 
     H_c = ustrip.(eV, [O*eV     w*T_b        w*T_tr        w*T_tl;
-                       w*T_b'   h_m(q_b(θ))  O*eV          O*eV;
-                       w*T_tr'  O*eV         h_m(q_tr(θ))  O*eV;
-                       w*T_tl'  O*eV         O*eV  h_m(q_tl(θ))])
+                       w*T_b'   h_m(q_b(θ/2))  O*eV          O*eV;
+                       w*T_tr'  O*eV         h_m(q_tr(θ/2))  O*eV;
+                       w*T_tl'  O*eV         O*eV  h_m(q_tl(θ/2))])
 
     H_k = (√2*ħ*v(0)/l(B)) * (kron(U, Π') + kron(L, Π))
 
